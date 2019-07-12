@@ -4,26 +4,18 @@ import "./PokeDeck.css";
 
 
 class PokeDeck extends Component{
-    static defaultProps = {
-        pokemon:[ 
-                {id: 4, name: 'Charmander', type: 'fire', base_experience: 62},
-                {id: 7, name: 'Squirtle', type: 'water', base_experience: 63},
-                {id: 11, name: 'Metapod', type: 'bug', base_experience: 72},
-                {id: 12, name: 'Butterfree', type: 'flying', base_experience: 178},
-                {id: 25, name: 'Pikachu', type: 'electric', base_experience: 112},
-                {id: 39, name: 'Jigglypuff', type: 'normal', base_experience: 95},
-                {id: 94, name: 'Gengar', type: 'poison', base_experience: 225},
-                {id: 133, name: 'Eevee', type: 'normal', base_experience: 65}
-              ]
-    };
-
     render(){
-       
+       let title;
+       if(this.props.isWinner){
+           title = <h1 className="PokeDeck-winner">You Won!</h1>
+       } else{
+        title = <h1 className="PokeDeck-looser">You Lost !</h1>
+       }
         return (
             <div className="PokeDeck">
-                <h1>Here is your Deck of Pokemon Cards</h1>
+                <h1>Here is your Hand of Pokemon Cards</h1>
                 <h2>Total Experience points: {this.props.exp}</h2>
-                <p> {this.props.isWinner ? "Winner": "Looser"}</p>
+                {title}
                 <div className="PokeDeck-cards">
                 {this.props.pokemon.map((card)=>
                     <PokeCard id={card.id} name={card.name} type={card.type} exp={card.base_experience} /> 

@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import PokeDeck from "./PokeDeck";
 import "./PokeGame.css";
 
 class PokeGame extends Component{
@@ -22,11 +23,17 @@ class PokeGame extends Component{
             let addedPokemon = hand2.splice(randoIndex,1)[0];
             hand1.push(addedPokemon);
         }
-        console.log(hand1);
-        console.log(hand2);
+        let Exp1 = hand1.reduce(function(totExp,pokemon){
+            return totExp + pokemon.base_experience;
+        },0);
+        let Exp2 = hand2.reduce(function(totExp,pokemon){
+            return totExp + pokemon.base_experience;
+        },0)
         return(
             <div className="PokeGame">
-
+                <PokeDeck pokemon={hand1} exp={Exp1} isWinner={Exp1 > Exp2}/>
+                <PokeDeck pokemon={hand2} exp={Exp2} isWinner={Exp2 > Exp1}/>
+               
             </div>
         )
     }

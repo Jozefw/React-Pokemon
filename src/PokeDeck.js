@@ -22,6 +22,8 @@ class PokeDeck extends Component{
         return (
             <div className="PokeDeck">
                 <h1>Here is your Deck of Pokemon Cards</h1>
+                <h2>Total Experience points: {this.props.exp}</h2>
+                <p> {this.props.isWinner ? "Winner": "Looser"}</p>
                 <div className="PokeDeck-cards">
                 {this.props.pokemon.map((card)=>
                     <PokeCard id={card.id} name={card.name} type={card.type} exp={card.base_experience} /> 
